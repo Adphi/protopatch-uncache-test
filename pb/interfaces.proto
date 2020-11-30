@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package interfaces;
+
+option go_package = "pb;interfaces";
+
+import "patch/go.proto";
+import "protoc-gen-validate/validate/validate.proto";
+
+message Interface {
+  string name = 1;
+  enum Status {
+    UNKNOWN = 0 [(go.value).name = "StatusUnknown"];
+    UP = 1 [(go.value).name = "StatusUP"];
+    DOWN = 2 [(go.value).name = "StatusDown"];
+  }
+  Status status = 2 [(validate.rules).enum = {defined_only: true, not_in: [0]}];
+  repeated IpAddress addresses = 3;
+}
+
+message IpAddress {
+  option (go.message).name = "IPAddress";
+  oneof Address {
+    string ipv4 = 3 [(go.field).name = "IPV4", (validate.rules).string.ipv4 = true];
+    string ipv6 = 4 [(go.field).name = "IPV6", (validate.rules).string.ipv6 = true];
+  }
+}
