@@ -141,18 +141,18 @@ func (m *IPAddress) Validate() error {
 
 	switch m.Address.(type) {
 
-	case *IPAddress_IPV4:
+	case *IpAddress_Ipv4:
 
-		if ip := net.ParseIP(m.GetIPV4()); ip == nil || ip.To4() == nil {
+		if ip := net.ParseIP(m.GetIpv4()); ip == nil || ip.To4() == nil {
 			return IpAddressValidationError{
 				field:  "Ipv4",
 				reason: "value must be a valid IPv4 address",
 			}
 		}
 
-	case *IPAddress_IPV6:
+	case *IpAddress_Ipv6:
 
-		if ip := net.ParseIP(m.GetIPV6()); ip == nil || ip.To4() != nil {
+		if ip := net.ParseIP(m.GetIpv6()); ip == nil || ip.To4() != nil {
 			return IpAddressValidationError{
 				field:  "Ipv6",
 				reason: "value must be a valid IPv6 address",

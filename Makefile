@@ -33,7 +33,6 @@ proto: clean-proto
 
 .PHONY:
 test-no-cache: clean tools proto
-	@echo "Testing compilation"
 	@-make go-test
 
 .PHONY:
