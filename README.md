@@ -32,6 +32,23 @@ message IpAddress {
 
 ```
 
+### Basic compilation go test
+
+```golang
+package main
+
+import (
+	"testing"
+
+	interfaces "github.com/adphi/protopatch-uncache-test/pb"
+)
+
+func Test(t *testing.T) {
+	_ = &interfaces.Interface{}
+}
+
+```
+
 ### Generate proto with non-cache version of protoc-gen-go-patch:
 
 ```bash
