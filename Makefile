@@ -9,6 +9,10 @@ tools:
 	@echo "Installing not cached version"
 	@rm -rf bin tmp
 	@go install github.com/alta/protopatch/cmd/protoc-gen-go-patch
+	@make protoc-gen-validate
+
+protoc-gen-validate:
+	@go install github.com/envoyproxy/protoc-gen-validate
 
 tools-patched:
 	@echo "Installing cache version"
@@ -18,6 +22,7 @@ tools-patched:
 	@cd tmp && git clone https://github.com/adphi/protopatch &> /dev/null
 	@cd tmp/protopatch && git checkout cache
 	@cd tmp/protopatch && make install
+	@make protoc-gen-validate
 
 clean-tools:
 	@echo "Cleaning tools"
