@@ -51,6 +51,15 @@ func Test(t *testing.T) {
 
 ### Generate proto with non-cache version of protoc-gen-go-patch:
 
+Test can be run in docker:
+```bash
+$ docker run --rm -i -t -w /test golang:alpine sh
+
+> apk add build-base git make protobuf
+> git clone https://github.com/Adphi/protopatch-uncache-test && cd protopatch-uncache-test
+
+```
+
 ```bash
 $ make test-no-cache
 ```
